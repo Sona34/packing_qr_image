@@ -3,6 +3,7 @@ import glob
 import cv2
 import numpy as np
 from rectpack import newPacker
+import random
 
 from PIL import Image
 
@@ -10,6 +11,9 @@ def get_qrcode_images(image_path = Parameters.WorkSpacePath["qrcode_image_path"]
     
     # get file path
     qrcode_image_files = glob.glob(image_path + "/*.*")
+
+    # random shuffle file path
+    random.shuffle(qrcode_image_files)
 
     qrcode_images = list()
     qrcode_shapes = list()
@@ -73,4 +77,24 @@ if __name__ == "__main__":
     # Image placement from calculated values
     output_image = placement_qrcode_images(images, rect_lists, bin_width, bin_height)
 
-    cv2.imwrite("./test.png", output_image)
+    output_image_path = Parameters.WorkSpacePath["output_image_path"]
+    cv2.imwrite(output_image_path, output_image)
+    
+    
+    # # 計測開始時間
+    # start_time = time.time()
+
+    # # 試行回数の取得
+    # try_steps = Parameters.parameters["try_steps"]
+
+    # for i in range(try_steps):
+
+    #     # decode
+    #     decode_start_time = time.time()
+    #     data = decode(Image.open())
+    #     decode_end_time = time.time()
+    
+    # # 計測終了時間
+    # end_time = time.time()
+
+    # process_time = end_time - start_time
