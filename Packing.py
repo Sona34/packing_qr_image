@@ -10,7 +10,10 @@ import itertools
 import csv
 
 from PIL import Image
-from pyzbar.pyzbar import decode 
+from pyzbar.pyzbar import decode
+ 
+import rectpack.packer as packer
+import rectpack.maxrects as maxrects
 
 def get_qrcode_info(image_path = Parameters.WorkSpacePath["qrcode_image_path"]):
     
@@ -44,9 +47,16 @@ def placement_qrcode_images(qrcode_images, rect_lists, bin_width, bin_height):
     for rect_list in rect_lists:
         index, x, y, w, h = rect_list
         qrcode_image = qrcode_images[index]
+
+        if w == qrcode_image.shape[0]:
+            qrcode_image = cv2.rotate(qrcode_image, cv2.ROTATE_90_CLOCKWISE)
         
-        # packing qrcode_image
-        output_image[y:y+h, x:x+w] = qrcode_image
+
+        try:
+            # packing qrcode_image
+            output_image[y:y+h, x:x+w] = qrcode_image
+        except ValueError:
+            return output_image
 
     return output_image
 
@@ -59,7 +69,9 @@ if __name__ == "__main__":
     # get try steps
     try_steps = Parameters.parameters["try_steps"]
 
-    packer = newPacker()
+    # packer = newPacker()
+    packer = newPacker(mode=packer.PackingMode.Offline, bin_algo=packer.PackingBin.Global, 
+pack_algo=maxrects.MaxRectsBssf, sort_algo=packer.SORT_AREA)
 
     # get bin_shape (width & height)
     bin_width = int(Parameters.parameters["bin_width"])
@@ -89,6 +101,7 @@ if __name__ == "__main__":
             # index, x, y, w, h
             rect_lists.append((r[5], r[1], r[2], r[3], r[4]))
         
+
         # Image placement from calculated values
         output_image = placement_qrcode_images(qrcode_images, rect_lists, bin_width, bin_height)
         output_image_dir = Parameters.WorkSpacePath["output_image_dir"]
@@ -111,9 +124,9 @@ if __name__ == "__main__":
         else:
             url = str(data)
             print("Data is %s" % url[16:38])
-
-            print("%d trials left" % try_steps)
+            
             try_steps -= 1
+            print("%d trials left" % try_steps)
 
             if try_steps == 0:
                 sum_of_count = i
@@ -127,6 +140,7 @@ if __name__ == "__main__":
     # get elements
     try_steps = Parameters.parameters["try_steps"]
     device_id = Parameters.parameters["device_id"]
+    cut_tag = Parameters.parameters["cut_tag"]
     csv_path = Parameters.WorkSpacePath["csv_path"]
 
     # write data to csv
@@ -134,18 +148,19 @@ if __name__ == "__main__":
         writer = csv.writer(f)
 
         l = list()
+        l.append(cut_tag)
         l.append(device_id)
         l.append(try_steps)
         l.append(process_time)
         l.append(decode_time)
         l.append(sum_of_count)
-
         # write l to csv file
         writer.writerow(l)
 
     f.close()
 
     # print
+    print("cut_tag : %s" % cut_tag)
     print("device_id : %d" % device_id)
     print("try_steps : %d" % try_steps)
     print("average of proc time : %f" % (process_time / try_steps))
