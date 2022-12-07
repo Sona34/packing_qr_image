@@ -6,5 +6,7 @@ WorkSpacePath = {
 
 parameters = {
     "check_count" : 100,
-    "device_id" : 0
+    "device_id" : 0,
+    "bin_width" : 400,
+    "bin_height" : 400
 }
