@@ -7,6 +7,7 @@ import random
 import time
 import os
 import itertools
+import csv
 
 from PIL import Image
 from pyzbar.pyzbar import decode 
@@ -51,7 +52,9 @@ def placement_qrcode_images(qrcode_images, rect_lists, bin_width, bin_height):
 
 
 if __name__ == "__main__":
+
     decode_time = int()
+    sum_of_count = int()
 
     # get try steps
     try_steps = Parameters.parameters["try_steps"]
@@ -108,12 +111,44 @@ if __name__ == "__main__":
         else:
             url = str(data)
             print("Data is %s" % url[16:38])
-            break
 
-        decode_end_time - decode_start_time
+            print("%d trials left" % try_steps)
+            try_steps -= 1
+
+            if try_steps == 0:
+                sum_of_count = i
+                break
+            
+        decode_time = decode_end_time - decode_start_time
 
     end_time = time.time()
-
     process_time = end_time - start_time
 
-    print(process_time)
+    # get elements
+    try_steps = Parameters.parameters["try_steps"]
+    device_id = Parameters.parameters["device_id"]
+    csv_path = Parameters.WorkSpacePath["csv_path"]
+
+    # write data to csv
+    with open(csv_path, 'a', newline="") as f:
+        writer = csv.writer(f)
+
+        l = list()
+        l.append(device_id)
+        l.append(try_steps)
+        l.append(process_time)
+        l.append(decode_time)
+        l.append(sum_of_count)
+
+        # write l to csv file
+        writer.writerow(l)
+
+    f.close()
+
+    # print
+    print("device_id : %d" % device_id)
+    print("try_steps : %d" % try_steps)
+    print("average of proc time : %f" % (process_time / try_steps))
+    print("average of decode time : %f" % (decode_time / try_steps))
+    print("average of try : %f" % (sum_of_count / try_steps))
+    
