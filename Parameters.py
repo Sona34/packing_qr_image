@@ -6,10 +6,6 @@ WorkSpacePath = {
     "output_image_dir" : "./img/output_img",
 }
 
-# device 0 is Inspiron 5480
-# device 1 is raspi
-# device 2 is desktop PC
-
 parameters = {
     #"try_steps" : 1,
     "device_id" : 0,
