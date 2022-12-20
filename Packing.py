@@ -107,12 +107,12 @@ pack_algo=maxrects.MaxRectsBssf, sort_algo=packer.SORT_AREA)
         output_image_dir = Parameters.WorkSpacePath["output_image_dir"]
 
         # # save image to different dir
-        output_image_path = os.path.join(output_image_dir, "output_{0:02}.png".format(i + 1))
-        cv2.imwrite(output_image_path, output_image)
+        #output_image_path = os.path.join(output_image_dir, "output_{0:02}.png".format(i + 1))
+        #cv2.imwrite(output_image_path, output_image)
 
         # # save image to same dir
-        # output_image_path = os.path.join(output_image_dir, "output.png")
-        # cv2.imwrite(output_image_path, output_image)
+        output_image_path = os.path.join(output_image_dir, "output.png")
+        cv2.imwrite(output_image_path, output_image)
 
         # decode
         decode_start_time = time.time()
