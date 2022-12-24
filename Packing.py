@@ -66,7 +66,7 @@ if __name__ == "__main__":
 
     # packer = newPacker()
     packer = newPacker(mode=packer.PackingMode.Offline, bin_algo=packer.PackingBin.Global, 
-pack_algo=maxrects.MaxRectsBssf, sort_algo=packer.SORT_AREA)
+      pack_algo=maxrects.MaxRectsBssf, sort_algo=packer.SORT_AREA)
 
     # get bin_shape (width & height)
     bin_width = int(Parameters.parameters["bin_width"])
