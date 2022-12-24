@@ -14,7 +14,7 @@ from pyzbar.pyzbar import decode
 import rectpack.packer as packer
 import rectpack.maxrects as maxrects
 
-def get_qrcode_info(image_path = Parameters.WorkSpacePath["qrcode_image_path"]):
+def get_qrcode_info(image_path = Parameters.WorkSpacePath["QRCODE_IMG_DIR_PATH"]):
     
     # get file path
     qrcode_image_files = glob.glob(image_path + "/*.*")
@@ -66,11 +66,11 @@ if __name__ == "__main__":
 
     # packer = newPacker()
     packer = newPacker(mode=packer.PackingMode.Offline, bin_algo=packer.PackingBin.Global, 
-      pack_algo=maxrects.MaxRectsBssf, sort_algo=packer.SORT_AREA)
+      pack_algo=maxrects.MaxRectsBssf, sort_algo=packer.SORT_AREA, rotation=True)
 
     # get bin_shape (width & height)
-    bin_width = int(Parameters.parameters["bin_width"])
-    bin_height = int(Parameters.parameters["bin_height"])
+    bin_width = int(Parameters.parameters["BIN_WIDTH"])
+    bin_height = int(Parameters.parameters["BIN_HEIGHT"])
 
     # add bin info to packer
     packer.add_bin(bin_width, bin_height, bid=0)
@@ -99,7 +99,7 @@ if __name__ == "__main__":
 
         # Image placement from calculated values
         output_image = placement_qrcode_images(qrcode_images, rect_lists, bin_width, bin_height)
-        output_image_dir = Parameters.WorkSpacePath["output_image_dir"]
+        output_image_dir = Parameters.WorkSpacePath["OUTPUT_IMG_DIR_PATH"]
 
         # # save image to different dir
         #output_image_path = os.path.join(output_image_dir, "output_{0:02}.png".format(i + 1))
@@ -126,8 +126,8 @@ if __name__ == "__main__":
     # Wprocess_time = end_time - start_time
 
     # get elements
-    device_id = Parameters.parameters["device_id"]
-    cut_tag = Parameters.parameters["cut_tag"]
+    device_id = Parameters.parameters["DEVICE_ID"]
+    cut_id = Parameters.parameters["CUT_ID"]
 
     # カットした画像群と使用したデバイスを出力
-    print("%s,%d,%d" % (cut_tag, device_id, i + 1))   
+    print("%s,%d,%d" % (cut_id, device_id, i + 1))   

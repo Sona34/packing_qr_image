@@ -1,15 +1,14 @@
 # for experiments
 
 WorkSpacePath = {
-    "qrcode_image_path" : "./img/cut_img/qrcode_4",
-    "source_image_path" : "./img/src_img/fun_qrcode.png",
-    "output_image_dir" : "./img/output_img",
+    "QRCODE_IMG_DIR_PATH" : "./img/cut_img/qrcode_4",
+    "OUTPUT_IMG_DIR_PATH" : "./img/output_img",
+    # "SOURCE_IMG_PATH" : "./img/src_img/fun_qrcode.png",
 }
 
 parameters = {
-    #"try_steps" : 1,
-    "device_id" : 0,
-    "cut_tag" : "4rect",
-    "bin_width" : 400,
-    "bin_height" : 400
+    "DEVICE_ID" : 0,
+    "CUT_ID" : "4rect",
+    "BIN_WIDTH" : 400,
+    "BIN_HEIGHT" : 400
 }
