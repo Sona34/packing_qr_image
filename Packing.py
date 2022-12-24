@@ -14,7 +14,7 @@ from pyzbar.pyzbar import decode
 import rectpack.packer as packer
 import rectpack.maxrects as maxrects
 
-def get_qrcode_info(image_path = Parameters.WorkSpacePath["QRCODE_IMG_DIR_PATH"]):
+4544def get_qrcode_info(image_path = Parameters.WorkSpacePath["QRCODE_IMG_DIR_PATH"]):
     
     # get file path
     qrcode_image_files = glob.glob(image_path + "/*.*")
