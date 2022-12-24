@@ -1,4 +1,4 @@
-try_steps=1000
+try_steps=5
 
 for i in `seq 0 $try_steps`
 do
@@ -8,7 +8,7 @@ do
 #   %S	コマンドを実行するのに使用したシステムCPU時間（秒単位）
 #   %U	コマンドを実行するのに使用したユーザーCPU時間（秒単位）
 #   %P	コマンド実行時のCPU使用率（％）。計算式は、（%U + %S） / %e
-  time --output packing.log --append -f '%e,%S,%U' python3 Packing.py >> packing.log
   echo $i
+  time --output packing.log --append -f '%e,%S,%U' python3 Packing.py >> packing.log
   # echo $(($try_steps - $i))
 done
