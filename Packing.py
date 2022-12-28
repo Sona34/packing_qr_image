@@ -21,13 +21,14 @@ def get_qrcode_info(image_path = Parameters.WorkSpacePath["QRCODE_IMG_DIR_PATH"]
 
     # random shuffle file path
     random.shuffle(qrcode_image_files)
-
+    
     qrcode_images = list()
     qrcode_shapes = list()
 
     for f in qrcode_image_files:
+
         img = cv2.imread(f)
-        
+
         # (width, height)
         qrcode_shape = (img.shape[1], img.shape[0])
 
@@ -63,51 +64,57 @@ def placement_qrcode_images(qrcode_images, rect_lists, bin_width, bin_height):
 if __name__ == "__main__":
 
     #decode_time = int()
-
-    # packer = newPacker()
-    packer = newPacker(mode=packer.PackingMode.Offline, bin_algo=packer.PackingBin.Global, 
-      pack_algo=maxrects.MaxRectsBssf, sort_algo=packer.SORT_AREA, rotation=True)
+    # start_time = time.time()
+    
+    i = int()
+    
+    packer = newPacker(mode=packer.PackingMode.Offline, 
+      bin_algo=packer.PackingBin.Global, 
+      pack_algo=maxrects.MaxRectsBssf, 
+      sort_algo=packer.SORT_NONE, 
+      rotation=True)
 
     # get bin_shape (width & height)
     bin_width = int(Parameters.parameters["BIN_WIDTH"])
     bin_height = int(Parameters.parameters["BIN_HEIGHT"])
 
     # add bin info to packer
-    packer.add_bin(bin_width, bin_height, bid=0)
-    
-    # start_time = time.time()
-    i = int()
+    packer.add_bin(bin_width, bin_height, bid=0)    
+
     # iter loop
     for i in itertools.count():
+
         # update qrcode info
         qrcode_images, qrcode_items = get_qrcode_info()
 
         # add rect info to packer
         for index, item in enumerate(qrcode_items):
+            # print(index)
             packer.add_rect(item[0], item[1], rid=index)
         
         # packing
         packer.pack()
 
         rect_lists = list()
-
+        # print(rect_lists)
         # append rect elements to rect_lists
         for r in packer.rect_list():
             # index, x, y, w, h
             rect_lists.append((r[5], r[1], r[2], r[3], r[4]))
-        
+
+            
 
         # Image placement from calculated values
         output_image = placement_qrcode_images(qrcode_images, rect_lists, bin_width, bin_height)
         output_image_dir = Parameters.WorkSpacePath["OUTPUT_IMG_DIR_PATH"]
 
         # # save image to different dir
-        #output_image_path = os.path.join(output_image_dir, "output_{0:02}.png".format(i + 1))
-        #cv2.imwrite(output_image_path, output_image)
+        output_image_path = os.path.join(output_image_dir, "output_{0:02}.png".format(i + 1))
+        cv2.imwrite(output_image_path, output_image)
 
         # # save image to same dir
-        output_image_path = os.path.join(output_image_dir, "output.png")
-        cv2.imwrite(output_image_path, output_image)
+        # output_image_path = os.path.join(output_image_dir, "output.png")
+        # cv2.imwrite(output_image_path, output_image)
 
         # decode
         decode_start_time = time.time()
