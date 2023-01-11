@@ -18,7 +18,7 @@ def get_qrcode_info(image_path = Parameters.WorkSpacePath["QRCODE_IMG_DIR_PATH"]
     
     # get file path
     qrcode_image_files = glob.glob(image_path + "/*.*")
-
+    
     # random shuffle file path
     random.shuffle(qrcode_image_files)
     
@@ -26,21 +26,27 @@ def get_qrcode_info(image_path = Parameters.WorkSpacePath["QRCODE_IMG_DIR_PATH"]
     qrcode_shapes = list()
 
     for f in qrcode_image_files:
-
         img = cv2.imread(f)
+        
+        # 入力が画像を0, 90, 180, 270でランダムに回転させる
+        # rand = random.randint(0, 3)
+        # np.rot90(img, rand)
 
         # (width, height)
         qrcode_shape = (img.shape[1], img.shape[0])
 
+        # print(f)
+        # print(qrcode_shape)
+
         # append conntents
         qrcode_images.append(img)
         qrcode_shapes.append(qrcode_shape)
-    
+
     return qrcode_images, qrcode_shapes
 
 def placement_qrcode_images(qrcode_images, rect_lists, bin_width, bin_height):
     
-    # create empty bin
+    # create empty img
     output_image = np.zeros((bin_width, bin_height, 3), dtype=np.uint8)
     
     # get elements from rect_lists
@@ -48,9 +54,8 @@ def placement_qrcode_images(qrcode_images, rect_lists, bin_width, bin_height):
         index, x, y, w, h = rect_list
         qrcode_image = qrcode_images[index]
 
-        if w == qrcode_image.shape[0]:
-            qrcode_image = cv2.rotate(qrcode_image, cv2.ROTATE_90_CLOCKWISE)
-        
+        #if w == qrcode_image.shape[0]:
+            #qrcode_image = cv2.rotate(qrcode_image, cv2.ROTATE_90_CLOCKWISE)
 
         try:
             # packing qrcode_image
@@ -83,7 +88,8 @@ if __name__ == "__main__":
 
     # iter loop
     for i in itertools.count():
-
+    # for i in range(1):
+    
         # update qrcode info
         qrcode_images, qrcode_items = get_qrcode_info()
 
@@ -91,16 +97,20 @@ if __name__ == "__main__":
         for index, item in enumerate(qrcode_items):
             # print(index)
             packer.add_rect(item[0], item[1], rid=index)
+            # print(item[0], item[1])
+
+        # print("---------------------------")
         
         # packing
         packer.pack()
 
         rect_lists = list()
-        # print(rect_lists)
+        rect_lists.clear()
         # append rect elements to rect_lists
         for r in packer.rect_list():
             # index, x, y, w, h
             rect_lists.append((r[5], r[1], r[2], r[3], r[4]))
+            # print((r[5], r[1], r[2], r[3], r[4]))
 
             
 
@@ -108,13 +118,13 @@ if __name__ == "__main__":
         output_image = placement_qrcode_images(qrcode_images, rect_lists, bin_width, bin_height)
         output_image_dir = Parameters.WorkSpacePath["OUTPUT_IMG_DIR_PATH"]
 
-        # # save image to different dir
-        output_image_path = os.path.join(output_image_dir, "output_{0:02}.png".format(i + 1))
-        cv2.imwrite(output_image_path, output_image)
+        # save image to different dir
+        # output_image_path = os.path.join(output_image_dir, "output_{0:02}.png".format(i + 1))
+        # cv2.imwrite(output_image_path, output_image)
 
         # # save image to same dir
-        # output_image_path = os.path.join(output_image_dir, "output.png")
-        # cv2.imwrite(output_image_path, output_image)
+        output_image_path = os.path.join(output_image_dir, "output.png")
+        cv2.imwrite(output_image_path, output_image)
 
         # decode
         decode_start_time = time.time()
@@ -128,7 +138,7 @@ if __name__ == "__main__":
             # print("data is none")
             
         decode_time = decode_end_time - decode_start_time
-
+    
     # end_time = time.time()
     # Wprocess_time = end_time - start_time
 

@@ -1,4 +1,4 @@
-f = open('packing.log', 'r', encoding='UTF-8')
+f = open('5rect.log', 'r', encoding='UTF-8')
 datalist = f.readlines()
 
 sum_of_count = int()
@@ -7,11 +7,13 @@ log_info = list()
 n = int()
 
 for i, data in enumerate(datalist):
+    
     if i % 2 == 0:
         elements = data.strip().split(',')
     else:
         elements = elements + data.strip().split(',')
         log_info.append(elements)
+
 cut_id = input("please type cut_id : ")
 device_id = input("please type device_id : ")
 
