@@ -1,4 +1,5 @@
 try_steps=1
+logfile="5rect.log"
 
 for i in `seq 0 $try_steps`
 do
@@ -9,6 +10,6 @@ do
 #   %U	コマンドを実行するのに使用したユーザーCPU時間（秒単位）
 #   %P	コマンド実行時のCPU使用率（％）。計算式は、（%U + %S） / %e
   echo $i
-  time --output 5rect.log --append -f '%e,%S,%U' python3 Packing.py >> 5rect.log
+  time --output $logfile --append -f '%e,%S,%U' python3 Packing.py >> $logfile
   # echo $(($try_steps - $i))
 done
