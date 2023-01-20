@@ -68,7 +68,7 @@ def placement_qrcode_images(qrcode_images, rect_lists, bin_width, bin_height):
 
 if __name__ == "__main__":
 
-    #decode_time = int()
+    decode_time = int()
     # start_time = time.time()
     
     i = int()
@@ -137,7 +137,7 @@ if __name__ == "__main__":
         # else:
             # print("data is none")
             
-        decode_time = decode_end_time - decode_start_time
+        decode_time += (decode_end_time - decode_start_time)
     
     # end_time = time.time()
     # Wprocess_time = end_time - start_time
@@ -147,4 +147,4 @@ if __name__ == "__main__":
     cut_id = Parameters.parameters["CUT_ID"]
 
     # カットした画像群と使用したデバイスを出力
-    print("%s,%d,%d" % (cut_id, device_id, i + 1))   
+    print("%s,%d,%d,%5f" % (cut_id, device_id, i + 1, decode_time))   

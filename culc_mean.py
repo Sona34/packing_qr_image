@@ -3,6 +3,7 @@ datalist = f.readlines()
 
 sum_of_count = int()
 sum_of_time = float()
+sum_of_decodetime = float()
 log_info = list()
 n = int()
 
@@ -26,13 +27,16 @@ for i, element in enumerate(log_info):
             # print("device_id = %s" % device_id)
             n += 1
             sum_of_count = sum_of_count + int(element[2])
-            sum_of_time = sum_of_time + float(element[3])
+            sum_of_decodetime = sum_of_decodetime + float(element[3])
+            sum_of_time = sum_of_time + float(element[4])
 
+average_of_decodetime = sum_of_decodetime / n
 average_of_time = sum_of_time / n
 average_of_count = sum_of_count / n
 
 print("%d回 の平均" % n)
 print("平均実行時間 %0.4fs" % average_of_time)
 print("平均試行回数 %0.4f回" % average_of_count)
+print('平均デコード時間 %0.4f' % average_of_decodetime)
 
 f.close()
