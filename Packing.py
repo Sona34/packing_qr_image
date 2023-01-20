@@ -29,8 +29,8 @@ def get_qrcode_info(image_path = Parameters.WorkSpacePath["QRCODE_IMG_DIR_PATH"]
         img = cv2.imread(f)
         
         # 入力が画像を0, 90, 180, 270でランダムに回転させる
-        # rand = random.randint(0, 3)
-        # np.rot90(img, rand)
+        rand = random.randint(0, 3)
+        np.rot90(img, rand)
 
         # (width, height)
         qrcode_shape = (img.shape[1], img.shape[0])
