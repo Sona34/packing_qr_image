@@ -1,5 +1,5 @@
 try_steps=10
-logfile="5rect.log"
+logfile="6rect.log"
 
 for i in `seq 0 $try_steps`
 do

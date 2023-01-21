@@ -54,8 +54,8 @@ def placement_qrcode_images(qrcode_images, rect_lists, bin_width, bin_height):
         index, x, y, w, h = rect_list
         qrcode_image = qrcode_images[index]
 
-        # if w == qrcode_image.shape[0]:
-        #     qrcode_image = cv2.rotate(qrcode_image, cv2.ROTATE_90_CLOCKWISE)
+        if w == qrcode_image.shape[0]:
+            qrcode_image = cv2.rotate(qrcode_image, cv2.ROTATE_90_CLOCKWISE)
 
         try:
             # packing qrcode_image
@@ -125,12 +125,12 @@ if __name__ == "__main__":
         output_image_dir = Parameters.WorkSpacePath["OUTPUT_IMG_DIR_PATH"]
 
         # save image to different dir
-        output_image_path = os.path.join(output_image_dir, "output_{0:02}.png".format(i + 1))
-        cv2.imwrite(output_image_path, output_image)
-
-        # # save image to same dir
-        # output_image_path = os.path.join(output_image_dir, "output.png")
+        # output_image_path = os.path.join(output_image_dir, "output_{0:02}.png".format(i + 1))
         # cv2.imwrite(output_image_path, output_image)
+
+        # save image to same dir
+        output_image_path = os.path.join(output_image_dir, "output.png")
+        cv2.imwrite(output_image_path, output_image)
 
         # decode
         decode_start_time = time.time()
