@@ -1,4 +1,4 @@
-try_steps=10
+try_steps=100
 logfile="6rect.log"
 
 for i in `seq 0 $try_steps`

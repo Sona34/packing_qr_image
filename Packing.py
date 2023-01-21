@@ -54,8 +54,8 @@ def placement_qrcode_images(qrcode_images, rect_lists, bin_width, bin_height):
         index, x, y, w, h = rect_list
         qrcode_image = qrcode_images[index]
 
-        if w == qrcode_image.shape[0]:
-            qrcode_image = cv2.rotate(qrcode_image, cv2.ROTATE_90_CLOCKWISE)
+        # if w == qrcode_image.shape[0]:
+        #     qrcode_image = cv2.rotate(qrcode_image, cv2.ROTATE_90_CLOCKWISE)
 
         try:
             # packing qrcode_image
@@ -70,13 +70,13 @@ if __name__ == "__main__":
     
     i = int()
 
-    packer = newPacker(
-            # mode=packer.PackingMode.Offline, 
-            # bin_algo=packer.PackingBin.Global, 
-            # pack_algo=maxrects.MaxRectsBssf, 
-            # sort_algo=packer.SORT_NONE, 
-            # rotation=True
-    )
+    # packer = newPacker(
+    #         # mode=packer.PackingMode.Offline, 
+    #         # bin_algo=packer.PackingBin.Global, 
+    #         # pack_algo=maxrects.MaxRectsBssf, 
+    #         # sort_algo=packer.SORT_NONE, 
+    #         # rotation=True
+    # )
 
     # iter loop
     for i in itertools.count():
