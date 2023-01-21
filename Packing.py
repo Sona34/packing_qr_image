@@ -54,8 +54,8 @@ def placement_qrcode_images(qrcode_images, rect_lists, bin_width, bin_height):
         index, x, y, w, h = rect_list
         qrcode_image = qrcode_images[index]
 
-        #if w == qrcode_image.shape[0]:
-            #qrcode_image = cv2.rotate(qrcode_image, cv2.ROTATE_90_CLOCKWISE)
+        # if w == qrcode_image.shape[0]:
+        #     qrcode_image = cv2.rotate(qrcode_image, cv2.ROTATE_90_CLOCKWISE)
 
         try:
             # packing qrcode_image
@@ -67,29 +67,36 @@ def placement_qrcode_images(qrcode_images, rect_lists, bin_width, bin_height):
 
 
 if __name__ == "__main__":
-
-    decode_time = int()
-    # start_time = time.time()
     
     i = int()
-    
-    packer = newPacker(mode=packer.PackingMode.Offline, 
-      bin_algo=packer.PackingBin.Global, 
-      pack_algo=maxrects.MaxRectsBssf, 
-      sort_algo=packer.SORT_NONE, 
-      rotation=True)
 
-    # get bin_shape (width & height)
-    bin_width = int(Parameters.parameters["BIN_WIDTH"])
-    bin_height = int(Parameters.parameters["BIN_HEIGHT"])
-
-    # add bin info to packer
-    packer.add_bin(bin_width, bin_height, bid=0)    
+    packer = newPacker(
+            # mode=packer.PackingMode.Offline, 
+            # bin_algo=packer.PackingBin.Global, 
+            # pack_algo=maxrects.MaxRectsBssf, 
+            # sort_algo=packer.SORT_NONE, 
+            # rotation=True
+    )
 
     # iter loop
     for i in itertools.count():
-    # for i in range(1):
-    
+        decode_time = int()
+        # start_time = time.time()
+        
+        packer = newPacker(
+            # mode=packer.PackingMode.Offline, 
+            # bin_algo=packer.PackingBin.Global, 
+            # pack_algo=maxrects.MaxRectsBssf, 
+            # sort_algo=packer.SORT_NONE, 
+            # rotation=True
+        )
+
+        # get bin_shape (width & height)
+        bin_width = int(Parameters.parameters["BIN_WIDTH"])
+        bin_height = int(Parameters.parameters["BIN_HEIGHT"])
+        # add bin info to packer
+        packer.add_bin(bin_width, bin_height, bid=0) 
+
         # update qrcode info
         qrcode_images, qrcode_items = get_qrcode_info()
 
@@ -97,7 +104,6 @@ if __name__ == "__main__":
         for index, item in enumerate(qrcode_items):
             # print(index)
             packer.add_rect(item[0], item[1], rid=index)
-            # print(item[0], item[1])
 
         # print("---------------------------")
         
@@ -119,12 +125,12 @@ if __name__ == "__main__":
         output_image_dir = Parameters.WorkSpacePath["OUTPUT_IMG_DIR_PATH"]
 
         # save image to different dir
-        # output_image_path = os.path.join(output_image_dir, "output_{0:02}.png".format(i + 1))
-        # cv2.imwrite(output_image_path, output_image)
+        output_image_path = os.path.join(output_image_dir, "output_{0:02}.png".format(i + 1))
+        cv2.imwrite(output_image_path, output_image)
 
         # # save image to same dir
-        output_image_path = os.path.join(output_image_dir, "output.png")
-        cv2.imwrite(output_image_path, output_image)
+        # output_image_path = os.path.join(output_image_dir, "output.png")
+        # cv2.imwrite(output_image_path, output_image)
 
         # decode
         decode_start_time = time.time()
