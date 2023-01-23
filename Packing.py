@@ -77,10 +77,10 @@ if __name__ == "__main__":
     #         # sort_algo=packer.SORT_NONE, 
     #         # rotation=True
     # )
+    decode_time = 0.0
 
     # iter loop
     for i in itertools.count():
-        decode_time = int()
         # start_time = time.time()
         
         packer = newPacker(
@@ -139,18 +139,19 @@ if __name__ == "__main__":
 
         if len(data) != 0:
             url = str(data)
+            # print(url[16:38])
+            # print(type(url[16:38]))
+            if url[16:38] == "https://www.fun.ac.jp/":
+                is_fun_url = 1
+            else:
+                is_fun_url = 0
             break
-        # else:
-            # print("data is none")
             
         decode_time += (decode_end_time - decode_start_time)
-    
-    # end_time = time.time()
-    # Wprocess_time = end_time - start_time
-
+        
     # get elements
     device_id = Parameters.parameters["DEVICE_ID"]
     cut_id = Parameters.parameters["CUT_ID"]
 
     # カットした画像群と使用したデバイスを出力
-    print("%s,%d,%d,%5f" % (cut_id, device_id, i + 1, decode_time))   
+    print("%s,%d,%d,%5f,%d" % (cut_id, device_id, i + 1, decode_time, is_fun_url))   

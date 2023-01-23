@@ -1,5 +1,5 @@
 try_steps=300
-logfile="rand-6.log"
+logfile="thesis_data_20220123_91"
 
 for i in `seq 0 $try_steps`
 do
