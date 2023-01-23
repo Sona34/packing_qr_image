@@ -1,5 +1,5 @@
-try_steps=100
-logfile="6rect.log"
+try_steps=300
+logfile="rand-6.log"
 
 for i in `seq 0 $try_steps`
 do

@@ -1,4 +1,4 @@
-f = open('6rect.log', 'r', encoding='UTF-8')
+f = open('thesis-data.txt', 'r', encoding='UTF-8')
 datalist = f.readlines()
 
 sum_of_count = int()

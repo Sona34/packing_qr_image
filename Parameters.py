@@ -8,7 +8,7 @@ WorkSpacePath = {
 
 parameters = {
     "DEVICE_ID" : 0,
-    "CUT_ID" : "qrcode-6",
+    "CUT_ID" : "rand-6",
     "BIN_WIDTH" : 400,
     "BIN_HEIGHT" : 400
 }

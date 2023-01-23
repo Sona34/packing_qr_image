@@ -1,0 +1,20 @@
+pi@raspberrypi:~/labo/packing_qr_image $ python3 culc_mean.py 
+please type cut_id : 5slice
+please type device_id : 0
+301回 の平均
+平均実行時間 7.2986s
+平均試行回数 121.9369回
+
+pi@raspberrypi:~/labo/packing_qr_image $ python3 culc_mean.py 
+please type cut_id : 6slice
+please type device_id : 0
+301回 の平均
+平均実行時間 81.0422s
+平均試行回数 779.3256回
+
+pi@raspberrypi:~/labo/packing_qr_image $ python3 culc_mean.py 
+please type cut_id : rand-6
+please type device_id : 0
+301回 の平均
+平均実行時間 1.2523s
+平均試行回数 8.8738回
