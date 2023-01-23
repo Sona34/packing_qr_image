@@ -1,7 +1,7 @@
-try_steps=300
-logfile="thesis_data_20220123_91"
+try_steps=100
+logfile="txt/thesis_data_20220123_01.txt"
 
-for i in `seq 0 $try_steps`
+for i in `seq 1 $try_steps`
 do
 
 #   %E	経過した実時間（書式は、[hours:]minutes:seconds）
