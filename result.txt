@@ -41,3 +41,27 @@ please type device_id : 0
 平均実行時間 1.2284s
 平均試行回数 8.0160回
 平均デコード時間 0.2667s
+
+---- Tue Jan 24 16:00:06 JST 2023 ----
+
+noksm@LAPTOP-RK2QTSDQ:~/project/packing_qr_image$ python3 culc_mean.py 
+please type cut_id : qrcode_5
+please type device_id : 0
+500回 の平均
+平均実行時間 7.2849s
+平均試行回数 122.1120回
+平均デコード時間 4.4352s
+noksm@LAPTOP-RK2QTSDQ:~/project/packing_qr_image$ python3 culc_mean.py 
+please type cut_id : qrcode_6
+please type device_id : 0
+500回 の平均
+平均実行時間 77.5467s
+平均試行回数 760.0680回
+平均デコード時間 48.9913s
+noksm@LAPTOP-RK2QTSDQ:~/project/packing_qr_image$ python3 culc_mean.py 
+please type cut_id : rand_6
+please type device_id : 0
+500回 の平均
+平均実行時間 1.2284s
+平均試行回数 8.0160回
+平均デコード時間 0.2667s
