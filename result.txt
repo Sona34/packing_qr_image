@@ -18,3 +18,26 @@ please type device_id : 0
 300回 の平均
 平均実行時間 1.2496s
 平均試行回数 8.8200回
+
+-------2023年  1月 24日 火曜日 12:22:50 JST--------
+pi@raspberrypi:~/labo/packing_qr_image $ python3 culc_mean.py 
+please type cut_id : qrcode_5
+please type device_id : 0
+600回 の平均
+平均実行時間 7.5955s
+平均試行回数 127.1000回
+平均デコード時間 4.6277s
+pi@raspberrypi:~/labo/packing_qr_image $ python3 culc_mean.py 
+please type cut_id : qrcode_6
+please type device_id : 0
+508回 の平均
+平均実行時間 77.5499s
+平均試行回数 760.0965回
+平均デコード時間 48.9943s
+pi@raspberrypi:~/labo/packing_qr_image $ python3 culc_mean.py 
+please type cut_id : rand_6
+please type device_id : 0
+500回 の平均
+平均実行時間 1.2284s
+平均試行回数 8.0160回
+平均デコード時間 0.2667s
