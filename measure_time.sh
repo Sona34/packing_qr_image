@@ -1,4 +1,4 @@
-try_steps=250
+try_steps=500
 logfile="txt/thesis_data_20220123_01.txt"
 
 for i in `seq 1 $try_steps`
