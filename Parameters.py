@@ -14,23 +14,23 @@
 #     "BIN_HEIGHT" : 400
 # }
 
-WorkSpacePath = {
-    "QRCODE_IMG_DIR_PATH" : "./img/cut_img/qrcode_6",
-    "OUTPUT_IMG_DIR_PATH" : "./img/output_img/",
-    # "SOURCE_IMG_PATH" : "./img/src_img/fun_qrcode.png",
-}
+# WorkSpacePath = {
+#     "QRCODE_IMG_DIR_PATH" : "./img/cut_img/qrcode_6",
+#     "OUTPUT_IMG_DIR_PATH" : "./img/output_img/",
+#     "SOURCE_IMG_PATH" : "./img/src_img/qrcode600x600.png",
+# }
 
-parameters = {
-    "DEVICE_ID" : 0,
-    "CUT_ID" : "qrcode_6",
-    "BIN_WIDTH" : 600,
-    "BIN_HEIGHT" : 600
-}
+# parameters = {
+#     "DEVICE_ID" : 0,
+#     "CUT_ID" : "qrcode_6",
+#     "BIN_WIDTH" : 600,
+#     "BIN_HEIGHT" : 600
+# }
 
 # WorkSpacePath = {
 #     "QRCODE_IMG_DIR_PATH" : "./img/cut_img/rand_6",
 #     "OUTPUT_IMG_DIR_PATH" : "./img/output_img/",
-#     # "SOURCE_IMG_PATH" : "./img/src_img/fun_qrcode.png",
+#     "SOURCE_IMG_PATH" : "./img/src_img/fun_qrcode.png",
 # }
 
 # parameters = {
@@ -39,3 +39,16 @@ parameters = {
 #     "BIN_WIDTH" : 400,
 #     "BIN_HEIGHT" : 400
 # }
+
+WorkSpacePath = {
+    "QRCODE_IMG_DIR_PATH" : "./img/cut_img/qrcode_7",
+    "OUTPUT_IMG_DIR_PATH" : "./img/output_img/",
+    "SOURCE_IMG_PATH" : "./img/src_img/qrcode700x700.png",
+}
+
+parameters = {
+    "DEVICE_ID" : 0,
+    "CUT_ID" : "qrcode_7",
+    "BIN_WIDTH" : 700,
+    "BIN_HEIGHT" : 700
+}
